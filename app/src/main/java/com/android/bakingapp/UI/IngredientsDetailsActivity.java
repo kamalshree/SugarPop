@@ -1,17 +1,19 @@
 package com.android.bakingapp.UI;
 
-import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.bakingapp.Adapters.IngredientsAdapter;
-import com.android.bakingapp.Adapters.RecipeAdapter;
 import com.android.bakingapp.Interface.GetDataService;
 import com.android.bakingapp.Models.IngredientData;
-import com.android.bakingapp.Models.RecipeData;
 import com.android.bakingapp.R;
 import com.android.bakingapp.Retrofit.RetrofitClientInstance;
 
@@ -26,42 +28,42 @@ import retrofit2.Response;
  * Created by kamalshree on 8/3/2018.
  */
 
-public class IngredientsDetailsActivity extends AppCompatActivity {
+public class IngredientsDetailsActivity extends Fragment {
 
     private List<IngredientData> ingredientsList;
 
     private IngredientsAdapter adapter;
     private RecyclerView recyclerView;
-    private Context context;
 
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ingredient_details);
-        context =  this;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_ingredient_details, container, false);
 
-        ingredientsList = getIntent().getParcelableArrayListExtra("ingredientsList");
+        ingredientsList = getActivity().getIntent().getParcelableArrayListExtra("ingredientsList");
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_ingredients);
 
-        recyclerView=(RecyclerView)findViewById(R.id.rv_ingredients) ;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(IngredientsDetailsActivity.this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        /*Create handle for the RetrofitInstance interface*/
+         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<List<IngredientData>> call = service.getAllIngredients();
         call.enqueue(new Callback<List<IngredientData>>() {
             @Override
             public void onResponse(Call<List<IngredientData>> call, Response<List<IngredientData>> response) {
-                adapter = new IngredientsAdapter(context, ingredientsList);
+                adapter = new IngredientsAdapter(getContext(), ingredientsList);
                 recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<List<IngredientData>> call, Throwable t) {
-                Toast.makeText(IngredientsDetailsActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.retrofit_error), Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+        return rootView;
+    }
 }

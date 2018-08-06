@@ -54,7 +54,7 @@ public class RecipeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<RecipeData>> call, Throwable t) {
-                Toast.makeText(RecipeActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecipeActivity.this, getResources().getString(R.string.retrofit_error), Toast.LENGTH_SHORT).show();
             }
         });
     }

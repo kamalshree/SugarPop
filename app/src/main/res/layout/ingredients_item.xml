@@ -4,6 +4,7 @@
     android:id="@+id/rl_constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="60dp"
     android:padding="@dimen/dimen_15dp">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -24,9 +25,9 @@
         card_view:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
+            android:id="@+id/rl_ingredients"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="showIngredients">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/iv_ingredientimage"
@@ -59,13 +60,13 @@
                 android:id="@+id/iv_arrowimage"
                 android:layout_width="@dimen/dimen_30dp"
                 android:layout_height="@dimen/dimen_30dp"
-                android:layout_toEndOf="@+id/tv_ingredient_name"
-                android:background="@drawable/right_arrow"
-                android:textAlignment="viewStart"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dimen_26dp"
+                android:layout_toEndOf="@+id/tv_ingredient_name"
+                android:background="@drawable/right_arrow"
                 android:contentDescription="@string/next"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:textAlignment="viewStart" />
 
         </RelativeLayout>
 

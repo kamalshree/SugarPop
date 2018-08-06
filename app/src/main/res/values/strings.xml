@@ -12,4 +12,6 @@
     <string name="next">next</string>
     <string name="ingredient">Ingredient</string>
     <string name="spoon">spoon</string>
+    <string name="retrofit_error">Something went wrong...Please try later!</string>
+    <string name="ingredients">ingredients</string>
 </resources>
