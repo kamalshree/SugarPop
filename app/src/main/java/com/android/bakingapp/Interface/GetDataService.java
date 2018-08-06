@@ -2,6 +2,7 @@ package com.android.bakingapp.Interface;
 
 import com.android.bakingapp.Models.IngredientData;
 import com.android.bakingapp.Models.RecipeData;
+import com.android.bakingapp.Models.StepData;
 import com.android.bakingapp.Utils.BakingConstants;
 
 import java.util.List;
@@ -19,4 +20,7 @@ public interface GetDataService {
 
     @GET(BakingConstants.BAKING_JSON_URL)
     Call<List<IngredientData>> getAllIngredients();
+
+    @GET(BakingConstants.BAKING_JSON_URL)
+    Call<List<StepData>> getAllSteps();
 }

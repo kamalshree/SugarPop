@@ -96,7 +96,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
                 intent.putExtra("position", holder.getAdapterPosition());
                 intent.putExtra("recipeName", dataList.get(holder.getAdapterPosition()).getName());
                 intent.putParcelableArrayListExtra("ingredientsList", new ArrayList<Parcelable>(dataList.get(holder.getAdapterPosition()).getIngredients()));
-
+                intent.putParcelableArrayListExtra("steps", new ArrayList<Parcelable>(dataList.get(holder.getAdapterPosition()).getSteps()));
                 context.startActivity(intent);
             }
         });

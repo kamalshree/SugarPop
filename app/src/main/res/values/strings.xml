@@ -14,4 +14,6 @@
     <string name="spoon">spoon</string>
     <string name="retrofit_error">Something went wrong...Please try later!</string>
     <string name="ingredients">ingredients</string>
+    <string name="step">step</string>
+    <string name="step_name">Step Name</string>
 </resources>

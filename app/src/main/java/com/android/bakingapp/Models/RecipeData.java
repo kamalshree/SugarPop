@@ -9,17 +9,21 @@ import java.util.List;
  * Created by kamalshree on 8/3/2018.
  */
 
-public class RecipeData{
+public class RecipeData {
 
-        @SerializedName("id")
-        private Integer id;
-        @SerializedName("name")
-        private String name;
-        @SerializedName("servings")
-        private Integer servings;
+    @SerializedName("id")
+    private Integer id;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("servings")
+    private Integer servings;
 
-        @SerializedName("ingredients")
-        private List<IngredientData> ingredients = null;
+    @SerializedName("ingredients")
+    private List<IngredientData> ingredients = null;
+
+    @SerializedName("steps")
+    @Expose
+    private List<StepData> steps = null;
 
     public RecipeData(Integer id, String name, Integer servings) {
         this.id = id;
@@ -57,5 +61,13 @@ public class RecipeData{
 
     public void setServings(Integer servings) {
         this.servings = servings;
+    }
+
+    public List<StepData> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<StepData> steps) {
+        this.steps = steps;
     }
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.android.bakingapp.Fragments.IngredientsDetailsFrameLayout;
 import com.android.bakingapp.Fragments.SettingOptionsFragment;
+import com.android.bakingapp.Fragments.StepDetailsFrameLayout;
 import com.android.bakingapp.R;
 
 /**
@@ -76,6 +77,13 @@ public class IngredientsActivityLayout extends AppCompatActivity implements Sett
                 case "ingredients": {
                     fragmentManager.beginTransaction()
                             .replace(R.id.detailContainer, new IngredientsDetailsFrameLayout())
+                            .commit();
+                    break;
+                }
+
+                case "step": {
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.detailContainer, new StepDetailsFrameLayout())
                             .commit();
                     break;
                 }
