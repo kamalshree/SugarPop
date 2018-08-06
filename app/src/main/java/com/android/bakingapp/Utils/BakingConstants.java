@@ -12,8 +12,8 @@ public class BakingConstants {
     public static final String BAKING_JSON_URL = "baking.json";
 
     public static final String NUTELLA_PIE = "Nutella Pie";
-    public static final String YELLOW_CAKE = "Brownies";
-    public static final String BROWNIE = "Yellow Cake";
+    public static final String YELLOW_CAKE = "Yellow Cake";
+    public static final String BROWNIE = "Brownies";
     public static final String CHEESECAKE = "Cheesecake";
 
     public static final int TIME_OUT=2500;

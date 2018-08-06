@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintlayout_recipe"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/textColor"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/dimen_36dp"
+        android:layout_height="@dimen/dimen_64dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:layout_marginEnd="@dimen/dimen_4dp"
+        android:layout_marginStart="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:contentDescription="@string/spoon"
+        android:src="@drawable/spoon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_ingredients_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_ingredients_name"
+        android:layout_width="@dimen/dimen_342dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:padding="@dimen/dimen_5dp"
+        android:text="@string/recipe_name"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/font_18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_quantity"
+        android:layout_width="@dimen/dimen_339dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/dimen_6dp"
+        android:layout_marginStart="@dimen/dimen_2dp"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:padding="@dimen/dimen_5dp"
+        android:text="@string/number_of_servings"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/font_14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ingredients_name" />
+
+</android.support.constraint.ConstraintLayout>

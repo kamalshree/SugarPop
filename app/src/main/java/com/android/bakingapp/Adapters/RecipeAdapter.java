@@ -1,18 +1,23 @@
 package com.android.bakingapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
 
 import com.android.bakingapp.Models.RecipeData;
 import com.android.bakingapp.R;
+import com.android.bakingapp.UI.RecipeDetailsActivity;
 import com.android.bakingapp.Utils.BakingConstants;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +41,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
         TextView name;
         TextView servings;
         private ImageView RecipeImage;
+        private RelativeLayout relativeLayout;
 
         CustomViewHolder(View itemView) {
             super(itemView);
@@ -44,6 +50,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
             name = mView.findViewById(R.id.tv_recipe_name);
             servings = mView.findViewById(R.id.tv_servings);
             RecipeImage = mView.findViewById(R.id.iv_recipeimage);
+            relativeLayout = mView.findViewById(R.id.rl_recipe);
         }
     }
 
@@ -55,7 +62,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomViewHolder holder, int position) {
         holder.name.setText(dataList.get(position).getName());
         holder.servings.setText("Servings "+dataList.get(position).getServings().toString());
 
@@ -81,6 +88,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
                         .into(holder.RecipeImage);
                 break;
         }
+
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, RecipeDetailsActivity.class);
+                intent.putExtra("position", holder.getAdapterPosition());
+                intent.putExtra("recipeName", dataList.get(holder.getAdapterPosition()).getName());
+                intent.putParcelableArrayListExtra("ingredientsList", new ArrayList<Parcelable>(dataList.get(holder.getAdapterPosition()).getIngredients()));
+
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 

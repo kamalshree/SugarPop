@@ -6,7 +6,10 @@
     <string name="no_internet_connection">No internet Connection</string>
     <string name="refresh">Refresh</string>
     <string name="no_interenet_connection">No Interenet Connection</string>
-    <string name="recipe_name">Recipe Name</string>
     <string name="number_of_servings">Number of servings</string>
     <string name="recipe_image">Recipe Image</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="next">next</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="spoon">spoon</string>
 </resources>
