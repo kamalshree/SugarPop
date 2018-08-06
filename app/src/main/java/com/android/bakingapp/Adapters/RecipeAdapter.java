@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.android.bakingapp.Models.RecipeData;
 import com.android.bakingapp.R;
-import com.android.bakingapp.Fragments.IngredientsFrameLayout;
+import com.android.bakingapp.UI.IngredientsActivityLayout;
 import com.android.bakingapp.Utils.BakingConstants;
 import com.bumptech.glide.Glide;
 
@@ -92,7 +92,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, IngredientsFrameLayout.class);
+                Intent intent = new Intent(context, IngredientsActivityLayout.class);
                 intent.putExtra("position", holder.getAdapterPosition());
                 intent.putExtra("recipeName", dataList.get(holder.getAdapterPosition()).getName());
                 intent.putParcelableArrayListExtra("ingredientsList", new ArrayList<Parcelable>(dataList.get(holder.getAdapterPosition()).getIngredients()));

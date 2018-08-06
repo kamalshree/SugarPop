@@ -1,4 +1,4 @@
-package com.android.bakingapp.Fragments;
+package com.android.bakingapp.UI;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -6,16 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.bakingapp.Fragments.IngredientsDetailsFrameLayout;
+import com.android.bakingapp.Fragments.SettingOptionsFragment;
 import com.android.bakingapp.R;
-import com.android.bakingapp.UI.IngredientsDetailsActivity;
 
 /**
  * Created by kamalshree on 8/5/2018.
  */
 
-public class IngredientsFrameLayout extends AppCompatActivity implements SettingOptionsFragment.OnOptionClickListener {
+public class IngredientsActivityLayout extends AppCompatActivity implements SettingOptionsFragment.OnOptionClickListener {
 
     private boolean isTwoPane;
     private FragmentManager fragmentManager;
@@ -62,7 +62,7 @@ public class IngredientsFrameLayout extends AppCompatActivity implements Setting
         //Load Ingredients Fragment by default in the details pane
         if (isTwoPane) {
             fragmentManager.beginTransaction()
-                    .replace(R.id.detailContainer, new IngredientsDetailsActivity())
+                    .replace(R.id.detailContainer, new IngredientsDetailsFrameLayout())
                     .commit();
         }
 
@@ -75,7 +75,7 @@ public class IngredientsFrameLayout extends AppCompatActivity implements Setting
             switch (option) {
                 case "ingredients": {
                     fragmentManager.beginTransaction()
-                            .replace(R.id.detailContainer, new IngredientsDetailsActivity())
+                            .replace(R.id.detailContainer, new IngredientsDetailsFrameLayout())
                             .commit();
                     break;
                 }
@@ -83,7 +83,7 @@ public class IngredientsFrameLayout extends AppCompatActivity implements Setting
             }
         } else {
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, new IngredientsDetailsActivity())
+                    .replace(R.id.container, new IngredientsDetailsFrameLayout())
                     .commit();
         }
     }

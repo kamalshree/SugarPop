@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".Fragments.IngredientsFrameLayout">
+    tools:context=".UI.IngredientsActivityLayout">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:background="@drawable/background_color"
-        tools:context=".Fragments.IngredientsFrameLayout">
+        tools:context=".UI.IngredientsActivityLayout">
 
         <!-- ToolBar -->
         <android.support.v7.widget.Toolbar
@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="7"
-        tools:context=".Fragments.IngredientsFrameLayout">
+        tools:context=".UI.IngredientsActivityLayout">
 
     </FrameLayout>
 

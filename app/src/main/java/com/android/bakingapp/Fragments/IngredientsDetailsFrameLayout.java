@@ -1,4 +1,4 @@
-package com.android.bakingapp.UI;
+package com.android.bakingapp.Fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -28,7 +28,7 @@ import retrofit2.Response;
  * Created by kamalshree on 8/3/2018.
  */
 
-public class IngredientsDetailsActivity extends Fragment {
+public class IngredientsDetailsFrameLayout extends Fragment {
 
     private List<IngredientData> ingredientsList;
 
