@@ -22,6 +22,24 @@ public class IngredientData implements Parcelable {
     @Expose
     private String ingredient;
 
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
     private IngredientData(Parcel in) {
         if (in.readByte() == 0) {
             quantity = null;
@@ -43,23 +61,6 @@ public class IngredientData implements Parcelable {
             return new IngredientData[size];
         }
     };
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public String getMeasure() {
-        return measure;
-    }
-
-    public String getIngredient() {
-        return ingredient;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {

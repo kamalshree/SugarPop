@@ -38,8 +38,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
 
         public final View mView;
 
-        TextView name;
-        TextView servings;
+        private TextView name;
+        private TextView servings;
         private ImageView RecipeImage;
         private RelativeLayout relativeLayout;
 

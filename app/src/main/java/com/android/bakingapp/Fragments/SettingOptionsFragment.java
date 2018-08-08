@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.bakingapp.Adapters.IngredientsAdapter;
 import com.android.bakingapp.Adapters.StepAdapter;
 import com.android.bakingapp.Interface.GetDataService;
-import com.android.bakingapp.Models.IngredientData;
 import com.android.bakingapp.Models.StepData;
 import com.android.bakingapp.R;
 import com.android.bakingapp.Retrofit.RetrofitClientInstance;
@@ -38,11 +36,12 @@ public class SettingOptionsFragment extends Fragment {
     public interface OnOptionClickListener {
         void onOptionSelected(String option);
     }
-
+    Boolean twoPane;
     private List<StepData> stepList;
     private StepAdapter adapter;
     private RecyclerView recyclerView;
     private OnOptionClickListener mCallback;
+
 
     @Override
     public void onAttach(Context context) {
@@ -57,7 +56,7 @@ public class SettingOptionsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.ingredients_item, container, false);
-
+        twoPane=getArguments().getBoolean("isTwoPane");
         RelativeLayout mIngredientOption = rootView.findViewById(R.id.rl_ingredients);
 
         mIngredientOption.setOnClickListener(new View.OnClickListener() {
@@ -67,8 +66,8 @@ public class SettingOptionsFragment extends Fragment {
             }
         });
 
-        /* step Implementation */
 
+        /* step View  Implementation */
         stepList = getActivity().getIntent().getParcelableArrayListExtra("steps");
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_steps);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -81,7 +80,7 @@ public class SettingOptionsFragment extends Fragment {
         call.enqueue(new Callback<List<StepData>>() {
             @Override
             public void onResponse(Call<List<StepData>> call, Response<List<StepData>> response) {
-                adapter = new StepAdapter(getContext(), stepList);
+                adapter = new StepAdapter(getContext(), stepList,twoPane);
                 recyclerView.setAdapter(adapter);
             }
 

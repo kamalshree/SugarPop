@@ -1,27 +1,29 @@
 package com.android.bakingapp.Fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.bakingapp.Adapters.IngredientsAdapter;
-import com.android.bakingapp.Interface.GetDataService;
-import com.android.bakingapp.Models.IngredientData;
+import com.android.bakingapp.Models.StepData;
 import com.android.bakingapp.R;
-import com.android.bakingapp.Retrofit.RetrofitClientInstance;
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -30,40 +32,85 @@ import retrofit2.Response;
 
 public class StepDetailsFrameLayout extends Fragment {
 
-    private List<IngredientData> ingredientsList;
+    private StepData step;
+    @BindView(R.id.tv_step_description)
+    TextView stepDescription;
+    @BindView(R.id.my_playerView)
+    PlayerView myPlayerView;
+    private SimpleExoPlayer mExoPlayer;
+    private String bundleKey;
 
-    private IngredientsAdapter adapter;
-    private RecyclerView recyclerView;
+    public StepDetailsFrameLayout() {
+    }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_ingredient_details, container, false);
+        View view = inflater.inflate(R.layout.activity_stepdetails, container, false);
+        ButterKnife.bind(this, view);
 
-        ingredientsList = getActivity().getIntent().getParcelableArrayListExtra("ingredientsList");
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_ingredients);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-
-         /*Create handle for the RetrofitInstance interface*/
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<IngredientData>> call = service.getAllIngredients();
-        call.enqueue(new Callback<List<IngredientData>>() {
-            @Override
-            public void onResponse(Call<List<IngredientData>> call, Response<List<IngredientData>> response) {
-                adapter = new IngredientsAdapter(getContext(), ingredientsList);
-                recyclerView.setAdapter(adapter);
+        if (getArguments() != null) {
+            if (getArguments().containsKey("stepInfoFromActivity")) {
+                bundleKey = "stepInfoFromActivity";
+            } else if (getArguments().containsKey("stepInfo")) {
+                bundleKey = "stepInfo";
             }
+        }
+        step = getArguments().getParcelable(bundleKey);
 
-            @Override
-            public void onFailure(Call<List<IngredientData>> call, Throwable t) {
-                Toast.makeText(getContext(), getResources().getString(R.string.retrofit_error), Toast.LENGTH_SHORT).show();
-            }
-        });
+        stepDescription.setText(step.getDescription());
 
-        return rootView;
+        mExoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), new DefaultTrackSelector());
+
+        myPlayerView.requestFocus();
+        myPlayerView.setPlayer(mExoPlayer);
+
+        DefaultDataSourceFactory dataSourceFactory = new DefaultDataSourceFactory(getActivity(), Util.getUserAgent(getActivity(), "exo-player"));
+        ExtractorMediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(step.getVideoURL()));
+
+        /* Error handling*/
+        if(TextUtils.isEmpty(step.getVideoURL())){
+            Toast.makeText(getActivity(), getResources().getString(R.string.video), Toast.LENGTH_SHORT).show();
+        }
+
+        mExoPlayer.prepare(mediaSource);
+        mExoPlayer.setPlayWhenReady(true);
+
+        if (savedInstanceState != null && mExoPlayer != null) {
+            mExoPlayer.seekTo(savedInstanceState.getLong("myPlayerPosition"));
+            mExoPlayer.setPlayWhenReady(savedInstanceState.getBoolean("myPlayerState"));
+        }
+
+        return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong("myPlayerPosition", mExoPlayer.getCurrentPosition());
+        outState.putBoolean("myPlayerState", mExoPlayer.getPlayWhenReady());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        myPlayerView.setPlayer(null);
+        if (mExoPlayer != null) {
+            mExoPlayer.setPlayWhenReady(false);
+            mExoPlayer.stop();
+            mExoPlayer.release();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        myPlayerView.setPlayer(null);
     }
 }

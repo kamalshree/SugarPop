@@ -19,6 +19,7 @@ import com.android.bakingapp.Retrofit.RetrofitClientInstance;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +32,6 @@ import retrofit2.Response;
 public class IngredientsDetailsFrameLayout extends Fragment {
 
     private List<IngredientData> ingredientsList;
-
     private IngredientsAdapter adapter;
     private RecyclerView recyclerView;
 
@@ -40,6 +40,7 @@ public class IngredientsDetailsFrameLayout extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_ingredient_details, container, false);
+        ButterKnife.bind(this, rootView);
 
         ingredientsList = getActivity().getIntent().getParcelableArrayListExtra("ingredientsList");
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_ingredients);

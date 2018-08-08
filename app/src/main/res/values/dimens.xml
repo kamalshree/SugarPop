@@ -41,4 +41,10 @@
     <dimen name="dimen_339dp">339dp</dimen>
     <dimen name="dimen_6dp">6dp</dimen>
     <dimen name="dimen_333dp">333dp</dimen>
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="dimen_377dp">377dp</dimen>
+    <dimen name="dimen_473dp">473dp</dimen>
+    <dimen name="dimen_275dp">275dp</dimen>
+    <dimen name="dimen_142dp">142dp</dimen>
+    <dimen name="dimen_25dp">25dp</dimen>
 </resources>

@@ -16,4 +16,10 @@
     <string name="ingredients">ingredients</string>
     <string name="step">step</string>
     <string name="step_name">Step Name</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="video_description">Video Description</string>
+    <string name="reciepe_name">Reciepe Name</string>
+    <string name="video">Video is not available</string>
 </resources>

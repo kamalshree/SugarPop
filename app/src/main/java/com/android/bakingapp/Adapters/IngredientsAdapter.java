@@ -1,19 +1,14 @@
 package com.android.bakingapp.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.bakingapp.Models.IngredientData;
-import com.android.bakingapp.Models.RecipeData;
 import com.android.bakingapp.R;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
