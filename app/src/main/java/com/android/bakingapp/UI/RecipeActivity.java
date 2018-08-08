@@ -80,7 +80,7 @@ public class RecipeActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.back, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

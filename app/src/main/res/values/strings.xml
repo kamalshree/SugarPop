@@ -22,4 +22,5 @@
     <string name="video_description">Video Description</string>
     <string name="reciepe_name">Reciepe Name</string>
     <string name="video">Video is not available</string>
+    <string name="back">Please click BACK again to exit</string>
 </resources>
