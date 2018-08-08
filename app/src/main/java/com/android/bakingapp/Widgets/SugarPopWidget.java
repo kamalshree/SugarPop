@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
 import com.android.bakingapp.R;
-import com.android.bakingapp.UI.MainActivity;
 
 
 public class SugarPopWidget extends AppWidgetProvider {
