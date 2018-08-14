@@ -2,6 +2,7 @@ package com.android.bakingapp.Fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -35,7 +36,8 @@ import butterknife.Unbinder;
  */
 
 public class StepDetailsFrameLayout extends Fragment {
-    public static final String STEP_INFO = "stepInfoFromActivity";
+    public static final String STEP_INFO_ACTIVITY = "stepInfoFromActivity";
+    public static final String STEP_INFO = "stepInfo";
     private static final String POSITION_KEY = "pos_k";
     private static final String PLAY_WHEN_READY_KEY = "play_when_ready_k";
 
@@ -57,16 +59,16 @@ public class StepDetailsFrameLayout extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
-            if (getArguments().containsKey(STEP_INFO)) {
+            if (getArguments().containsKey(STEP_INFO_ACTIVITY)) {
                 bundleKey = "stepInfoFromActivity";
+            } else if (getArguments().containsKey(STEP_INFO)) {
+                bundleKey = "stepInfo";
             }
         }
         mStep = getArguments().getParcelable(bundleKey);
-
     }
 
     @Override
@@ -80,7 +82,6 @@ public class StepDetailsFrameLayout extends Fragment {
         }
 
         unbinder = ButterKnife.bind(this, rootView);
-
         mTvInstructions.setText(mStep.getDescription());
 
         return rootView;
