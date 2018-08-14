@@ -18,14 +18,15 @@ public class StepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_step);
 
-        arguments = new Bundle();
-        arguments.putParcelable("stepInfoFromActivity", Objects.requireNonNull(getIntent().getExtras()).getParcelable("stepInfo"));
+        if (savedInstanceState == null) {
+            arguments = new Bundle();
+            arguments.putParcelable("stepInfoFromActivity", Objects.requireNonNull(getIntent().getExtras()).getParcelable("stepInfo"));
 
-        StepDetailsFrameLayout fragment = new StepDetailsFrameLayout();
-        fragment.setArguments(arguments);
-        this.getSupportFragmentManager().beginTransaction()
-                .replace(R.id.my_step_frame_layout, fragment)
-                .commit();
-
+            StepDetailsFrameLayout fragment = new StepDetailsFrameLayout();
+            fragment.setArguments(arguments);
+            this.getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.my_step_frame_layout, fragment)
+                    .commit();
+        }
     }
 }

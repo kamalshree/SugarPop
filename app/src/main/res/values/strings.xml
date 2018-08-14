@@ -23,4 +23,9 @@
     <string name="reciepe_name">Reciepe Name</string>
     <string name="video">Video is not available</string>
     <string name="back">Please click BACK again to exit</string>
+    <string name="video_increment">1000</string>
+    <string name="widget_recipe_key">widget_recipe_key</string>
+    <string name="play">play</string>
+    <string name="pause">pause</string>
+
 </resources>

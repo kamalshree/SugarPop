@@ -29,4 +29,5 @@
     <dimen name="dimen_275dp">275dp</dimen>
     <dimen name="dimen_142dp">142dp</dimen>
     <dimen name="dimen_25dp">25dp</dimen>
+    <dimen name="dimen_50dp">50dp</dimen>
 </resources>

@@ -1,9 +1,15 @@
 package com.android.bakingapp.Models;
 
+import android.util.Base64;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by kamalshree on 8/3/2018.

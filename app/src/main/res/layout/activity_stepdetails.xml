@@ -27,8 +27,11 @@
             android:id="@+id/my_playerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_142dp"
+            app:controller_layout_id="@layout/exo_playback_control_view"
             android:layout_marginTop="@dimen/dimen_25dp"
             android:adjustViewBounds="true"
+            app:fastforward_increment="@string/video_increment"
+            app:rewind_increment="@string/video_increment"
             android:focusable="true" />
 
         <TextView
